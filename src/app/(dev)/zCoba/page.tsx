@@ -1,3 +1,5 @@
+"use client"
+
 import { Box, Group, Text, Burger } from "@mantine/core";
 import { useState } from "react";
 import {
