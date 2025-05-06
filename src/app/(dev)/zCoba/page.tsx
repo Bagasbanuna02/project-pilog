@@ -1,4 +1,3 @@
-"use client";
 import { Box, Group, Text, Burger } from "@mantine/core";
 import { useState } from "react";
 import {
@@ -7,19 +6,18 @@ import {
   IconShoppingCart,
   IconUser,
 } from "@tabler/icons-react";
-import { useViewportSize } from "@mantine/hooks";
 
 export default function MobileLayout() {
   const [opened, setOpened] = useState(false);
-  const { width } = useViewportSize();
 
   return (
     <Box
       style={{
         display: "flex",
         justifyContent: "center",
-        height: "100vh",
+        height: "100dvh",
         backgroundColor: "#e9ecef",
+        overflow: "hidden",
       }}
     >
       <Box
@@ -32,7 +30,8 @@ export default function MobileLayout() {
           backgroundColor: "#f8f9fa",
           boxShadow: "0 0 12px rgba(0, 0, 0, 0.1)",
           border: "1px solid #dee2e6",
-          borderRadius: width > 480 ? "20px" : 0,
+          borderRadius: 8,
+          position: "relative",
         }}
       >
         {/* Header */}
@@ -45,9 +44,11 @@ export default function MobileLayout() {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            flexShrink: 0,
-            borderTopLeftRadius: width > 480 ? "20px" : 0,
-            borderTopRightRadius: width > 480 ? "20px" : 0,
+            position: "sticky",
+            top: 0,
+            zIndex: 10,
+            borderTopLeftRadius: 8,
+            borderTopRightRadius: 8,
           }}
         >
           <Burger
