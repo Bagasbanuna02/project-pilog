@@ -1,7 +1,6 @@
 "use client"
-
 import { Box, Group, Text, Burger } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   IconHome,
   IconHeart,
@@ -11,6 +10,26 @@ import {
 
 export default function MobileLayout() {
   const [opened, setOpened] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const lastScrollTop = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollRef.current) return;
+      const currentScrollTop = scrollRef.current.scrollTop;
+      if (currentScrollTop > lastScrollTop.current && currentScrollTop > 60) {
+        setShowHeader(false); // scroll down
+      } else {
+        setShowHeader(true); // scroll up
+      }
+      lastScrollTop.current = currentScrollTop;
+    };
+
+    const scrollEl = scrollRef.current;
+    scrollEl?.addEventListener("scroll", handleScroll);
+    return () => scrollEl?.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <Box
@@ -51,6 +70,8 @@ export default function MobileLayout() {
             zIndex: 10,
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,
+            transform: showHeader ? "translateY(0)" : "translateY(-100%)",
+            transition: "transform 0.3s ease-in-out",
           }}
         >
           <Burger
@@ -69,7 +90,7 @@ export default function MobileLayout() {
         </Box>
 
         {/* Konten scrollable */}
-        <Box style={{ flex: 1, overflowY: "auto" }}>
+        <Box ref={scrollRef} style={{ flex: 1, overflowY: "auto" }}>
           {Array.from({ length: 50 }).map((_, index) => (
             <Box
               key={index}
