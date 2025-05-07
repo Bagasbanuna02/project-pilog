@@ -23,7 +23,7 @@ export default function MobileLayout({
       style={{
         display: "flex",
         justifyContent: "center",
-        height: "100vh",
+        height: "100dvh",
         backgroundColor: "#e9ecef",
       }}
     >

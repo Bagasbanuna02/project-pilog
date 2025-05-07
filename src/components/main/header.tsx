@@ -38,7 +38,10 @@ export default function ComponentHeader({
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          flexShrink: 0,
+          position: "sticky",
+          // flexShrink: 0,clea
+          top: 0,
+          zIndex: 10,
           borderTopLeftRadius: width > 480 ? "20px" : 0,
           borderTopRightRadius: width > 480 ? "20px" : 0,
         }}
