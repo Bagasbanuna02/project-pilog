@@ -60,4 +60,5 @@ const dataItem = {
   condition: "Baik",
   status: "tersedia",
   location: "Jalan Jend. Sudirman No. 123",
+  image: AssetImagePath.dummy_image
 };
