@@ -1,76 +1,38 @@
 "use client";
-import { dataItem } from "@/components/dummy/list_data_barang";
-import ComponentContent from "@/components/main/content";
 import ComponentFooter from "@/components/main/footer";
 import ComponentHeader from "@/components/main/header";
-import { AssetImagePath } from "@/lib/assets-image-path";
-import { Button, Grid, Image, Stack, Title } from "@mantine/core";
+import { Button } from "@mantine/core";
+import UI_Detail from "../_comp/ui_detail";
+import { dummyItem } from "@/components/dummy/list_data_barang";
+import { IItem } from "@/lib/interface/i_item";
+import { useShallowEffect } from "@mantine/hooks";
+import { useParams } from "next/navigation";
+import { useState } from "react";
 
 export default function DetailPage() {
-  const data = dataItem;
+  const param = useParams<{ id: string }>();
+  const [data, setData] = useState<IItem>();
 
-  const listData = [
-    {
-      title: "Kode",
-      value: data.code,
-    },
-    {
-      title: "Merk",
-      value: data.type,
-    },
-    {
-      title: "Kategori",
-      value: data.type,
-    },
-    {
-      title: "Kondisi barang",
-      value: data.condition,
-    },
-    {
-      title: "Status",
-      value: data.status,
-    },
-    {
-      title: "Lokasi",
-      value: data.location,
-    },
-  ];
+  useShallowEffect(() => {
+    handlerFilterData();
+  }, []);
+
+  async function handlerFilterData() {
+    const response = dummyItem.find((item) => item.id === param.id);
+    setData(response);
+  }
 
   return (
     <>
       <ComponentHeader title="Detail Barang" />
-      <ComponentContent>
-        <Stack py={"sm"} px={"lg"}>
-          <Image
-            alt="Foto"
-            src={AssetImagePath.dummy_car}
-            h={200}
-            radius={"sm"}
-            style={{
-              border: "1px solid #e2e8f0",
-            }}
-          />
-
-          <Stack>
-            <Title order={4} ta="center">
-              {data.title}
-            </Title>
-
-            {listData.map((e, i) => (
-              <Grid key={i}>
-                <Grid.Col span={3}>{e.title}</Grid.Col>
-                <Grid.Col span={1}>:</Grid.Col>
-                <Grid.Col span={"auto"}>{e.value}</Grid.Col>
-              </Grid>
-            ))}
-
-           
-          </Stack>
-        </Stack>
-      </ComponentContent>
+      <UI_Detail data={data as IItem} />
       <ComponentFooter>
-        <Button w={"100%"} radius={"xl"} onClick={() => {}}>
-          Pinjam
+        <Button w={"100%"}
+          color={data?.status === "tersedia" ? "blue" : data?.status === "tidak tersedia" ? "orange" : "gray"}
+          radius={"xl"} onClick={() => { }}>
+          {data?.status === "tersedia" && "Pinjam"}
+          {data?.status === "tidak tersedia" && "Dipinjam"}
+          {data?.status === "perawatan" && "Dalam perawatan"}
         </Button>
       </ComponentFooter>
     </>

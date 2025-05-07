@@ -53,7 +53,7 @@ export default function ComponentHeader({
                 <IconChevronLeft
                   color={MainColor.white}
                   size={20}
-                  onClick={() => router.back()}
+                  onClick={() => { router.back() }}
                 />
               </ActionIcon>
             )}
