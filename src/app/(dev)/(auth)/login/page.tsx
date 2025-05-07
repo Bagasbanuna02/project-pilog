@@ -2,13 +2,12 @@
 
 import type React from "react";
 
+import { MainColor } from "@/lib/color-palette";
 import {
-  Anchor,
   Button,
   Paper,
   PasswordInput,
   Stack,
-  Text,
   TextInput,
   Title
 } from "@mantine/core";
@@ -29,15 +28,15 @@ export default function Login() {
     // Simulate login - in a real app, you would call an API
     setTimeout(() => {
       setLoading(false);
-      router.push("/beranda");
+      router.push("/beranda", { scroll: false });
     }, 1000);
   };
 
   return (
-    <Stack h="100%" justify="center" p={"lg"}>
-      <Paper radius="md" p="xl" withBorder>
-        <Title order={2} ta="center" mt="md" mb={30}>
-          Selamat Datang
+    <Stack h="100%" justify="center" p={"lg"} style={{ color: "white" }}>
+      <Paper radius="md" p="xl" withBorder bg={MainColor.soft_darkblue}>
+        <Title order={1} ta="center" mb={30}>
+          LOGIN
         </Title>
 
         <form onSubmit={handleSubmit}>
@@ -60,16 +59,16 @@ export default function Login() {
               leftSection={<IconLock size={16} />}
             />
 
-            <Button fullWidth mt="xl" type="submit" loading={loading}>
+            <Button fullWidth mt="xl" type="submit" loading={loading} radius={"xl"}>
               Masuk
             </Button>
 
-            <Text c="dimmed" size="sm" ta="center" mt={5}>
+            {/* <Text c="dimmed" size="sm" ta="center" mt={5}>
               Belum punya akun?{" "}
               <Anchor size="sm" component="button" onClick={() => {}}>
                 Daftar
               </Anchor>
-            </Text>
+            </Text> */}
           </Stack>
         </form>
       </Paper>

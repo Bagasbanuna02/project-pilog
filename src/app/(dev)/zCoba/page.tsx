@@ -1,4 +1,5 @@
 "use client"
+
 import { Box, Group, Text, Burger } from "@mantine/core";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -11,6 +12,7 @@ import {
 export default function MobileLayout() {
   const [opened, setOpened] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
+  const [showFooter, setShowFooter] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const lastScrollTop = useRef(0);
 
@@ -18,12 +20,15 @@ export default function MobileLayout() {
     const handleScroll = () => {
       if (!scrollRef.current) return;
       const currentScrollTop = scrollRef.current.scrollTop;
-      if (currentScrollTop > lastScrollTop.current && currentScrollTop > 60) {
-        setShowHeader(false); // scroll down
-      } else {
-        setShowHeader(true); // scroll up
+      const scrollingDown = currentScrollTop > lastScrollTop.current;
+      const scrolledFarEnough =
+        Math.abs(currentScrollTop - lastScrollTop.current) > 5;
+
+      if (scrolledFarEnough) {
+        setShowHeader(!scrollingDown);
+        setShowFooter(!scrollingDown);
+        lastScrollTop.current = currentScrollTop;
       }
-      lastScrollTop.current = currentScrollTop;
     };
 
     const scrollEl = scrollRef.current;
@@ -71,7 +76,7 @@ export default function MobileLayout() {
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8,
             transform: showHeader ? "translateY(0)" : "translateY(-100%)",
-            transition: "transform 0.3s ease-in-out",
+            transition: "transform 0.25s ease-in-out",
           }}
         >
           <Burger
@@ -90,7 +95,14 @@ export default function MobileLayout() {
         </Box>
 
         {/* Konten scrollable */}
-        <Box ref={scrollRef} style={{ flex: 1, overflowY: "auto" }}>
+        <Box
+          ref={scrollRef}
+          style={{
+            flex: 1,
+            overflowY: "auto",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
           {Array.from({ length: 50 }).map((_, index) => (
             <Box
               key={index}
@@ -126,6 +138,8 @@ export default function MobileLayout() {
             flexShrink: 0,
             borderBottomLeftRadius: 8,
             borderBottomRightRadius: 8,
+            transform: showFooter ? "translateY(0)" : "translateY(100%)",
+            transition: "transform 0.25s ease-in-out",
           }}
         >
           <Box style={{ textAlign: "center" }}>

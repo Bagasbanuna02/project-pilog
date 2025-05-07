@@ -1,19 +1,15 @@
 import {
-  availableItems,
-  borrowedItems,
+  dummyItem
 } from "@/components/dummy/list_data_barang";
 import ComponentContent from "@/components/main/content";
 import { MainColor } from "@/lib/color-palette";
 import {
-  Badge,
   Box,
-  Group,
-  Image,
   Paper,
   SimpleGrid,
   Stack,
   Text,
-  Title,
+  Title
 } from "@mantine/core";
 import {
   IconCar,
@@ -22,10 +18,16 @@ import {
   IconDoor,
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
+import Comp_BoxItem from "../../_comp/box_item";
+import { useState } from "react";
+import { useShallowEffect } from "@mantine/hooks";
+import { IItem } from "@/lib/interface/i_item";
+import { PagePath } from "@/lib/page_path";
 // Category type
 interface Category {
   icon: React.ReactNode;
   label: string;
+  value: string;
   path: string;
 }
 
@@ -34,23 +36,54 @@ const categories: Category[] = [
   {
     icon: <IconCar size={24} />,
     label: "Transportasi",
-    path: "/beranda/transportasi",
+    value: "transportasi",
+    path: "",
   },
-  { icon: <IconDoor size={24} />, label: "Ruangan", path: "/beranda/ruangan" },
+  {
+    icon: <IconDoor size={24} />,
+    label: "Ruangan",
+    value: "ruangan",
+    path: "",
+  },
   {
     icon: <IconDeviceLaptop size={24} />,
     label: "Peralatan Elektronik",
-    path: "/beranda/peralatan-elektronik",
-  },
-  {
-    icon: <IconCategory size={24} />,
-    label: "Semua Kategori",
-    path: "/kategori",
+    value: "peralatan-elektronik",
+    path: "",
   },
 ];
 
+
+
 export function UI_Beranda() {
   const router = useRouter();
+
+  const [data, setData] = useState<IItem[]>([]);
+
+  useShallowEffect(() => {
+    handleSortData()
+  }, [data])
+
+  async function handleSortData() {
+    const statusOrder = {
+      "tersedia": 0,
+      "tidak tersedia": 1,
+      "perawatan": 2
+    };
+
+    const sortedData = dummyItem.sort((a, b) => {
+      return statusOrder[a.status] - statusOrder[b.status];
+    });
+
+    setData(sortedData);
+
+  }
+
+  const tersediaItems = data.filter(item => item.status === "tersedia").slice(-4);
+  const tidakTersediaItems = data.filter(item => item.status === "tidak tersedia").slice(-4);
+  const perawatanItems = data.filter(item => item.status === "perawatan").slice(-4);
+
+
   return (
     <>
       <ComponentContent>
@@ -61,7 +94,8 @@ export function UI_Beranda() {
                 key={index}
                 align="center"
                 gap={5}
-                onClick={() => router.push(category.path)}
+                onClick={() => router.push(PagePath.kategori_id({ id: category.value }), {scroll: false})
+                }
               >
                 <Paper
                   radius="xl"
@@ -91,6 +125,38 @@ export function UI_Beranda() {
                 </Text>
               </Stack>
             ))}
+            <Stack
+              align="center"
+              gap={5}
+              onClick={() => router.push(PagePath.kategori, {scroll: false})}
+            >
+              <Paper
+                radius="xl"
+                p="md"
+                bg={MainColor.darkblue}
+                style={{
+                  width: 60,
+                  height: 60,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: MainColor.white,
+                }}
+              >
+                <IconCategory size={24} />
+              </Paper>
+              <Text
+                size="xs"
+                ta="center"
+                style={{
+                  maxWidth: "100%",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                Semua Kategori
+              </Text>
+            </Stack>
           </SimpleGrid>
         </Box>
 
@@ -100,67 +166,32 @@ export function UI_Beranda() {
             Barang Tersedia
           </Title>
           <SimpleGrid cols={2} spacing="md">
-            {availableItems.map((item) => (
-              <Paper
-                key={item.id}
-                withBorder
-                p={0}
-                radius="md"
-                style={{ overflow: "hidden" }}
-              >
-                <Image
-                  src={item.image || "/placeholder.svg"}
-                  height={120}
-                  alt={item.name}
-                />
-                <Box p="xs">
-                  <Text fw={500} size="sm">
-                    {item.type}
-                  </Text>
-                  <Text size="xs" lineClamp={1}>
-                    {item.name}
-                  </Text>
-                </Box>
-              </Paper>
+            {tersediaItems.map((item, index) => (
+              <Comp_BoxItem key={index} data={item} />
             ))}
           </SimpleGrid>
         </Box>
 
-        {/* Borrowed Items */}
-        <Box mt="md" p="md" bg="white" pb="xl">
+        {/* Tidak Tersedia Items */}
+        <Box mt="md" p="md" bg="white">
           <Title order={4} mb="md">
-            Barang Dipinjam
+            Barang Tidak Tersedia
           </Title>
           <SimpleGrid cols={2} spacing="md">
-            {borrowedItems.map((item) => (
-              <Paper
-                key={item.id}
-                withBorder
-                p={0}
-                radius="md"
-                style={{ overflow: "hidden" }}
-              >
-                <Image
-                  src={item.image || "/placeholder.svg"}
-                  height={120}
-                  alt={item.name}
-                />
-                <Box p="xs" pos="relative">
-                  <Group justify="apart" align="flex-start">
-                    <Text fw={500} size="sm">
-                      {item.type}
-                    </Text>
-                    {item.status === "dipinjam" && (
-                      <Badge color="orange" variant="filled" size="sm">
-                        Dipinjam
-                      </Badge>
-                    )}
-                  </Group>
-                  <Text size="xs" lineClamp={1}>
-                    {item.name}
-                  </Text>
-                </Box>
-              </Paper>
+            {tidakTersediaItems.map((item, index) => (
+              <Comp_BoxItem key={index} data={item} />
+            ))}
+          </SimpleGrid>
+        </Box>
+
+        {/* Perawatan Items */}
+        <Box mt="md" p="md" bg="white">
+          <Title order={4} mb="md">
+            Barang Perawatan
+          </Title>
+          <SimpleGrid cols={2} spacing="md">
+            {perawatanItems.map((item, index) => (
+              <Comp_BoxItem key={index} data={item} />
             ))}
           </SimpleGrid>
         </Box>
