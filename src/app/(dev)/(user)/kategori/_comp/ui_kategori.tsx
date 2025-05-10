@@ -76,7 +76,9 @@ export default function UI_Kategori() {
                 align="center"
                 gap={5}
                 onClick={() =>
-                  router.push(PagePath.kategori_id({ id: category.value }))
+                  router.push(PagePath.kategori_id({ id: category.value }), {
+                    scroll: false,
+                  })
                 }
               >
                 <Paper

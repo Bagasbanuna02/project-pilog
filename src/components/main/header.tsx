@@ -1,17 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { MainColor } from "@/lib/color-palette";
-import { ActionIcon, Box, Burger, Group, Text } from "@mantine/core";
+import { ActionIcon, Box, Text } from "@mantine/core";
 import { useViewportSize } from "@mantine/hooks";
 import {
-  IconCaretLeftFilled,
-  IconChevronCompactLeft,
-  IconChevronCompactRight,
-  IconChevronLeft,
-  IconShoppingCart,
-  IconUser,
+  IconChevronLeft
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 export default function ComponentHeader({
   title,
