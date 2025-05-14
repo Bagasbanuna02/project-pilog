@@ -29,7 +29,6 @@ export default function DetailPage() {
     setData(response);
   }
 
-
   return (
     <>
       <ComponentHeader
@@ -41,6 +40,7 @@ export default function DetailPage() {
         }
       />
       <UI_Detail data={data as IItem} />
+
       <ComponentFooter>
         <Button
           w={"100%"}

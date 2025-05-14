@@ -14,7 +14,7 @@ export default function FooterFormulir() {
           color={"green"}
           radius={"xl"}
           onClick={() =>
-            router.push(PagePath.daftar_peminjaman({ id: param.id }), {
+            router.replace(PagePath.daftar_peminjaman({ id: param.id }), {
               scroll: false,
             })
           }

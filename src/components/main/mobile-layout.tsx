@@ -21,7 +21,7 @@ export default function MobileLayout({
 
   return (
     <Box
-      // ref={layoutRef}
+      ref={layoutRef}
       style={{
         display: "flex",
         justifyContent: "center",

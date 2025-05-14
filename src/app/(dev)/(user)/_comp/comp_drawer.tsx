@@ -1,14 +1,13 @@
 "use client";
 
-import { MainColor } from "@/lib/color-palette";
-import { ActionIcon, Box, Group, Title } from "@mantine/core";
-import { IconX } from "@tabler/icons-react";
+import { Drawer, MantineSize } from "@mantine/core";
 
 type BottomDrawerProps = {
   opened: boolean;
   onClose: () => void;
   title?: string;
   children: React.ReactNode;
+  size?: number | MantineSize | (string & {}) | undefined;
 };
 
 export default function ComponentDrawer({
@@ -16,44 +15,29 @@ export default function ComponentDrawer({
   onClose,
   title,
   children,
+  size,
 }: BottomDrawerProps) {
   return (
-    <Box
-      style={{
-        position: "relative", // <== GANTI ke relative agar bisa ikut layout
-        width: "100%",
-        height: 0, // agar tidak mengganggu layout
-      }}
-    >
-      <Box
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-        //   borderTop: `1px solid ${MainColor.darkblue}`,
-          backgroundColor: "white",
+    <Drawer
+      opened={opened}
+      onClose={onClose}
+      position="bottom"
+      size={size ?? "xs"}
+      padding="md"
+      withCloseButton
+      overlayProps={{ opacity: 0.5, blur: 2 }}
+      styles={{
+        content: {
+          margin: "0 auto", // posisi center secara horizontal
+          maxWidth: 480, // sesuai layout utama
+          width: "100%", // penuh di mobile
           borderTopLeftRadius: 16,
           borderTopRightRadius: 16,
-          padding: 16,
-          boxShadow: "0 -2px 10px rgba(0,0,0,0.2)",
-          transform: opened ? "translateY(0)" : "translateY(100%)",
-          transition: "transform 0.3s ease",
-          zIndex: 20,
-          maxWidth: "100%",
-        }}
-      >
-        <Group justify="space-between">
-          <Title order={4} c={MainColor.darkblue}>
-            {title ?? ""}
-          </Title>
-          <ActionIcon variant="transparent" onClick={onClose}>
-            <IconX color={MainColor.darkblue} />
-          </ActionIcon>
-        </Group>
-
-        <div>{children}</div>
-      </Box>
-    </Box>
+        },
+      }}
+      title={title ?? ""}
+    >
+      {children}
+    </Drawer>
   );
 }
