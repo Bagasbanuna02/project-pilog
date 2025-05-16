@@ -38,7 +38,7 @@ export default function Kategori() {
       <Box p="md" bg="white">
         <SimpleGrid cols={3}>
           {categories.map((category, index) => (
-            <Stack key={index} align="center" gap={5} mb="lg" component={Button} onClick={() => router.push(category.path)}>
+            <Stack key={index} align="center" gap={5} mb="lg" component={Button} onClick={() => router.push(category.path, {scroll: false})}>
               <Paper
                 radius="xl"
                 p="md"

@@ -2,7 +2,7 @@
 "use client";
 
 import { Box, Group, Text, Burger } from "@mantine/core";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   IconHome,
   IconHeart,
@@ -17,9 +17,11 @@ export default function MobileLayout({
   children: React.ReactNode;
 }) {
   const { width } = useViewportSize();
+  const layoutRef = useRef<HTMLDivElement>(null);
 
   return (
     <Box
+      ref={layoutRef}
       style={{
         display: "flex",
         justifyContent: "center",

@@ -1,4 +1,3 @@
-
 // Item type
 // export interface IItem {
 //   id: string;
@@ -31,4 +30,14 @@ export interface IItem {
   location: string;
   image: string;
   description: string;
+}
+
+export type IDetailPeminjaman = {
+  nama: string;
+  foto: string; // URL ke foto profil
+  barang: string;
+  status: "Dipinjam" | "Tersedia" | string; // Tambah opsi sesuai kebutuhan
+  mulai: string; // Format ISO date: YYYY-MM-DD
+  berakhir: string; // Format ISO date
+  deskripsi: string;
 };
