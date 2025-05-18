@@ -8,18 +8,28 @@ import {
   Paper,
   PasswordInput,
   Stack,
+  Text,
   TextInput,
-  Title
+  Title,
 } from "@mantine/core";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useShallowEffect } from "@mantine/hooks";
+import { apiFetchVersion } from "@/lib/api-fetch-master";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [version, setVersion] = useState("");
+
+  useShallowEffect(() => {
+    apiFetchVersion().then((res) => {
+      setVersion(res.data);
+    });
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -59,7 +69,13 @@ export default function Login() {
               leftSection={<IconLock size={16} />}
             />
 
-            <Button fullWidth mt="xl" type="submit" loading={loading} radius={"xl"}>
+            <Button
+              fullWidth
+              mt="xl"
+              type="submit"
+              loading={loading}
+              radius={"xl"}
+            >
               Masuk
             </Button>
 
@@ -69,6 +85,10 @@ export default function Login() {
                 Daftar
               </Anchor>
             </Text> */}
+
+            <Text ta={"center"} fz={"xs"} fw={"bold"}>
+              V.{version ? version : ".. .. .."}
+            </Text>
           </Stack>
         </form>
       </Paper>
