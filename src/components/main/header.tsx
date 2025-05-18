@@ -13,7 +13,7 @@ export default function ComponentHeader({
   buttonRight,
   newComponents,
 }: {
-  title: string;
+  title?: string;
   buttonLeft?: React.ReactNode;
   buttonRight?: React.ReactNode;
   newComponents?: React.ReactNode;

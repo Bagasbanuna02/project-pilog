@@ -17,4 +17,7 @@ const PagePath = {
   peminjaman_id: ({ id }: { id: string }) => `/peminjaman/${id}`,
   formulir_peminjaman: ({ id }: { id: string }) => `/peminjaman/${id}/formulir`,
   daftar_peminjaman: ({ id }: { id: string }) => `/peminjaman/${id}/daftar`,
+
+  // ====== ADMIN  ===== //
+  admin_dashboard: "/admin/dashboard",
 };

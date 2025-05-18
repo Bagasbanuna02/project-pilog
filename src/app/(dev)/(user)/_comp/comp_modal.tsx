@@ -11,7 +11,7 @@ interface ICompModal {
     size?: number | MantineSize | (string & {}) | undefined;
 }
 
-export default function Comp_Modal({
+export default function ComponentModal({
     opened,
     onClose,
     children,
