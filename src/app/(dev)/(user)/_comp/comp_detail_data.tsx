@@ -13,7 +13,7 @@ export default function Comp_DetailData({ data }: ICompDetailData) {
       <Grid>
         <Grid.Col span={3}>
           <Text
-            lineClamp={1}
+            // lineClamp={1}
             style={{
               overflow: "hidden",
               textOverflow: "ellipsis",

@@ -15,7 +15,7 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import Comp_DetailData from "../../_comp/comp_detail_data";
-import Comp_Modal from "../../_comp/comp_modal";
+import ComponentModal from "../../_comp/comp_modal";
 import Comp_SimpleGridDrawer from "../../_comp/comp_simple_grid_drawer";
 import Comp_StackButtonDrawer from "../../_comp/comp_stack_button_drawer";
 
@@ -110,7 +110,7 @@ export default function ProfilePage() {
         </Stack>
       </Comp_SimpleGridDrawer>
 
-      <Comp_Modal
+      <ComponentModal
         opened={openedModal}
         onClose={() => setOpenedModal(false)}
         title="Anda Ingin Keluar ?"
@@ -129,7 +129,7 @@ export default function ProfilePage() {
             Ya
           </Button>
         </Group>
-      </Comp_Modal>
+      </ComponentModal>
     </>
   );
 }
