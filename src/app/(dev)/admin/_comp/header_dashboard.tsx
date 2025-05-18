@@ -2,10 +2,11 @@ import ComponentHeader from "@/components/main/header";
 import { MainColor } from "@/lib/color-palette";
 import { ActionIcon } from "@mantine/core";
 import {
-    IconCirclePlus,
-    IconDotsVertical,
-    IconList,
-    IconListDetails
+  IconBell,
+  IconCirclePlus,
+  IconDotsVertical,
+  IconList,
+  IconListDetails,
 } from "@tabler/icons-react";
 import { useState } from "react";
 import Comp_SimpleGridDrawer from "../../(user)/_comp/comp_simple_grid_drawer";
@@ -17,7 +18,7 @@ export default function HeaderDashboard() {
   const listPathDrawer = [
     {
       title: "Tambah Barang",
-      path: "/admin/data-barang/tambah",
+      path: "/admin/item/create",
       icon: <IconCirclePlus />,
     },
     {
@@ -27,7 +28,7 @@ export default function HeaderDashboard() {
     },
     {
       title: "Data Barang",
-      path: "/admin/data-barang",
+      path: "/admin/item",
       icon: <IconList />,
     },
   ];
@@ -35,7 +36,12 @@ export default function HeaderDashboard() {
   return (
     <>
       <ComponentHeader
-        title="Dashboard"
+        title="Dashboard Admin"
+        buttonLeft={
+          <ActionIcon variant="transparent" onClick={() => {}}>
+            <IconBell color={MainColor.white} />
+          </ActionIcon>
+        }
         buttonRight={
           <ActionIcon variant="transparent" onClick={() => setOpened(true)}>
             <IconDotsVertical color={MainColor.white} />

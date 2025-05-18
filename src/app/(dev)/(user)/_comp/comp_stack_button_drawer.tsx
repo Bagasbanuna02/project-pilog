@@ -18,7 +18,7 @@ export default function Comp_StackButtonDrawer({
   const router = useRouter();
 
   return (
-    <Stack align="center" onClick={() => router.push(path)}>
+    <Stack align="center" onClick={() => router.push(path, {scroll: false})}>
       <ActionIcon variant="transparent" color={MainColor.black}>
         {icon}
       </ActionIcon>

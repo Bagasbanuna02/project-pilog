@@ -20,4 +20,6 @@ const PagePath = {
 
   // ====== ADMIN  ===== //
   admin_dashboard: "/admin/dashboard",
+  admin_item: "/admin/item",
+  admin_item_create: "/admin/item/create",
 };

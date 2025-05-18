@@ -17,7 +17,7 @@ import Comp_BoxItem from "../../(user)/_comp/box_item";
 import { dummyItem } from "@/components/dummy/list_data_barang";
 import ComponentContent from "@/components/main/content";
 
-export default function UI_Dashboard() {
+export default function UIAdmin_Dashboard() {
   const listDataStatus = [
     {
       title: "Tersedia",

@@ -2,7 +2,7 @@
 
 
 import HeaderDashboard from "../_comp/header_dashboard";
-import UI_Dashboard from "../_comp/ui_dashboard";
+import UIAdmin_Dashboard from "../_comp/ui_dashboard";
 
 export default function AdminPage() {
   return (
@@ -11,7 +11,7 @@ export default function AdminPage() {
       <HeaderDashboard />
 
       {/* Categories */}
-      <UI_Dashboard />
+      <UIAdmin_Dashboard />
     </>
   );
 }
