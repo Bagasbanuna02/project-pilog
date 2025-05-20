@@ -22,4 +22,7 @@ const PagePath = {
   admin_dashboard: "/admin/dashboard",
   admin_item: "/admin/item",
   admin_item_create: "/admin/item/create",
+  admin_item_detail: ({ id }: { id: string }) => `/admin/item/${id}`,
+  admin_item_edit: ({ id }: { id: string }) => `/admin/item/${id}/edit`,
+  admin_item_status: ({ id }: { id: string }) => `/admin/item/${id}/status`,
 };

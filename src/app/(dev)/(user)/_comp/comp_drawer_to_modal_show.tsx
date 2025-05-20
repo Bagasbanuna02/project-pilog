@@ -2,28 +2,20 @@
 
 import { MainColor } from "@/lib/color-palette";
 import { ActionIcon, Stack, Text } from "@mantine/core";
-import { useRouter } from "next/navigation";
 
-interface ICompStackButtonDrawer {
-  path: string;
+interface ICompDrawerToModalShow {
+  setOpened: (value: boolean) => void;
   icon: React.ReactNode;
   title: string;
-  // routerMethod?: "push" | "replace";
 }
 
-export default function Comp_StackButtonDrawer({
-  path,
+export default function Comp_DrawerToModalShow({
+  setOpened,
   icon,
   title,
-  // routerMethod = "push",
-}: ICompStackButtonDrawer) {
-  const router = useRouter();
-
+}: ICompDrawerToModalShow) {
   return (
-    <Stack
-      align="center"
-      onClick={() => router.push(path, { scroll: false })}
-    >
+    <Stack align="center" onClick={() => setOpened}>
       <ActionIcon variant="transparent" color={MainColor.black}>
         {icon}
       </ActionIcon>

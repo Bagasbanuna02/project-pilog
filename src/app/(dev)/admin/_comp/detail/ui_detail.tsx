@@ -1,38 +1,39 @@
+import Comp_DetailData from "@/app/(dev)/(user)/_comp/comp_detail_data";
+import { dummyItem } from "@/components/dummy/list_data_barang";
 import ComponentContent from "@/components/main/content";
 import { AssetImagePath } from "@/lib/assets-image-path";
-import { IItem } from "@/lib/interface/i_item";
 import { Image, Stack, Title } from "@mantine/core";
-import Comp_DetailData from "../../../_comp/comp_detail_data";
+import { useParams } from "next/navigation";
 
-export default function UI_Detail({ data }: { data: IItem }) {
+export default function UIAdmin_Item_Detail() {
+  const { id } = useParams();
+
+  const filterDataDummy = dummyItem.filter((item) => item.id === id);
+  console.log(">", filterDataDummy);
   const listData = [
-    // {
-    //     title: "Kode",
-    //     value: data?.id
-    // },
     {
       title: "Merk",
-      value: data?.merk,
+      value: filterDataDummy[0]?.merk,
     },
     {
       title: "Kategori",
-      value: data?.category,
+      value: filterDataDummy[0]?.category,
     },
     {
       title: "Kondisi barang",
-      value: data?.condition,
+      value: filterDataDummy[0]?.condition,
     },
     {
       title: "Status",
-      value: data?.status,
+      value: filterDataDummy[0]?.status,
     },
     {
       title: "Lokasi",
-      value: data?.location,
+      value: filterDataDummy[0]?.location,
     },
     {
       title: "Deskripsi",
-      value: data?.description,
+      value: filterDataDummy[0]?.description,
     },
   ];
 
@@ -52,7 +53,7 @@ export default function UI_Detail({ data }: { data: IItem }) {
 
           <Stack>
             <Title order={4} ta="center">
-              {data?.name || "-"}
+              {filterDataDummy[0]?.name || "-"}
             </Title>
 
             {listData.map((e, i) => (

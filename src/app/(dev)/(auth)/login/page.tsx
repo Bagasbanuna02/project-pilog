@@ -87,7 +87,7 @@ export default function Login() {
             </Text> */}
 
             <Text ta={"center"} fz={"xs"} fw={"bold"}>
-              V.{version ? version : ".. .. .."}
+              {version ? "V." + " " + version : "-"}
             </Text>
           </Stack>
         </form>

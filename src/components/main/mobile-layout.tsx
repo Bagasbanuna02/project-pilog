@@ -39,7 +39,7 @@ export default function MobileLayout({
           backgroundColor: "#f8f9fa",
           boxShadow: "0 0 12px rgba(0, 0, 0, 0.1)",
           border: "1px solid #dee2e6",
-          borderRadius: width > 480 ? "20px" : 0,
+          borderRadius: width > 480 ? "10px" : 0,
         }}
       >
         {children}

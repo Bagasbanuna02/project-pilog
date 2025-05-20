@@ -32,7 +32,11 @@ export default function UIAdmin_Item() {
           radius={"xl"}
           variant="outline"
           leftSection={<IconEye />}
-          onClick={() => {}}
+          onClick={() =>
+            router.push(PagePath.admin_item_detail({ id: item.id }), {
+              scroll: false,
+            })
+          }
         >
           Detail
         </Button>
@@ -74,7 +78,9 @@ export default function UIAdmin_Item() {
               <ActionIcon
                 variant="transparent"
                 size={40}
-                onClick={() => router.push(PagePath.admin_item_create, {scroll: false})}
+                onClick={() =>
+                  router.push(PagePath.admin_item_create, { scroll: false })
+                }
               >
                 <IconSquareRoundedPlus size={30} />
               </ActionIcon>
@@ -83,7 +89,7 @@ export default function UIAdmin_Item() {
           <Paper withBorder p={"xs"} w={"100%"}>
             <ScrollArea w={"100%"} h={"100%"}>
               <Box w={700}>
-                <Table>
+                <Table verticalSpacing={"lg"}>
                   <Table.Thead>
                     <Table.Tr>
                       <Table.Th ta={"center"}>Aksi</Table.Th>

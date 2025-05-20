@@ -1,4 +1,4 @@
-import ComponentHeader from "@/components/main/header";
+
 import { MainColor } from "@/lib/color-palette";
 import { ActionIcon } from "@mantine/core";
 import {
@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 import Comp_SimpleGridDrawer from "../../(user)/_comp/comp_simple_grid_drawer";
 import Comp_StackButtonDrawer from "../../(user)/_comp/comp_stack_button_drawer";
+import ComponentHeaderAdmin from "@/components/main/header_admin";
 
 export default function HeaderDashboard() {
   const [opened, setOpened] = useState(false);
@@ -35,7 +36,7 @@ export default function HeaderDashboard() {
 
   return (
     <>
-      <ComponentHeader
+      <ComponentHeaderAdmin
         title="Dashboard Admin"
         buttonLeft={
           <ActionIcon variant="transparent" onClick={() => {}}>

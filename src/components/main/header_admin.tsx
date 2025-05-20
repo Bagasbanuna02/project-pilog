@@ -5,7 +5,7 @@ import { IconChevronLeft } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-type IComponentHeader = {
+type IComponentHeaderAdmin = {
   title?: string;
   buttonLeft?: React.ReactNode;
   pathLeft?: string;
@@ -13,13 +13,13 @@ type IComponentHeader = {
   newComponents?: React.ReactNode;
 };
 
-export default function ComponentHeader({
+export default function ComponentHeaderAdmin({
   title,
   buttonLeft,
   pathLeft,
   buttonRight,
   newComponents,
-}: IComponentHeader) {
+}: IComponentHeaderAdmin) {
   const router = useRouter();
   const { width } = useViewportSize();
 
@@ -29,7 +29,7 @@ export default function ComponentHeader({
         style={{
           height: 60,
           padding: "0 16px",
-          backgroundColor: MainColor.soft_darkblue,
+          backgroundColor: MainColor.black,
           color: MainColor.white,
           display: "flex",
           alignItems: "center",
@@ -68,7 +68,7 @@ export default function ComponentHeader({
                 }}
                 disabled
                 variant="transparent"
-                bg={MainColor.soft_darkblue}
+                bg={MainColor.black}
               />
             )}
           </>
