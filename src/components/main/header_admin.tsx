@@ -11,6 +11,7 @@ type IComponentHeaderAdmin = {
   pathLeft?: string;
   buttonRight?: React.ReactNode;
   newComponents?: React.ReactNode;
+  disableButtonLeft?: boolean;
 };
 
 export default function ComponentHeaderAdmin({
@@ -19,6 +20,7 @@ export default function ComponentHeaderAdmin({
   pathLeft,
   buttonRight,
   newComponents,
+  disableButtonLeft,
 }: IComponentHeaderAdmin) {
   const router = useRouter();
   const { width } = useViewportSize();
@@ -44,18 +46,22 @@ export default function ComponentHeaderAdmin({
       >
         {newComponents ?? (
           <>
-            {buttonLeft ?? (
-              <ActionIcon variant="transparent">
-                <IconChevronLeft
-                  color={MainColor.white}
-                  size={20}
-                  onClick={() =>
-                    pathLeft
-                      ? router.push(pathLeft, { scroll: false })
-                      : router.back()
-                  }
-                />
-              </ActionIcon>
+            {disableButtonLeft ? (
+              <ActionIcon disabled bg={MainColor.black} variant="transparent" />
+            ) : (
+              buttonLeft ?? (
+                <ActionIcon variant="transparent">
+                  <IconChevronLeft
+                    color={MainColor.white}
+                    size={20}
+                    onClick={() =>
+                      pathLeft
+                        ? router.push(pathLeft, { scroll: false })
+                        : router.back()
+                    }
+                  />
+                </ActionIcon>
+              )
             )}
             <Text fw={600} size="lg">
               {title ?? "-"}

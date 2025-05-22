@@ -105,7 +105,7 @@ export default function ProfilePage() {
             <IconLogout />
           </ActionIcon>
           <Text ta={"center"} fz={"xs"} color={MainColor.red}>
-            Logout
+            Keluar
           </Text>
         </Stack>
       </Comp_SimpleGridDrawer>

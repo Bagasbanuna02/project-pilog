@@ -1,17 +1,19 @@
-
 import { MainColor } from "@/lib/color-palette";
 import { ActionIcon } from "@mantine/core";
 import {
-  IconBell,
   IconCirclePlus,
   IconDotsVertical,
   IconList,
   IconListDetails,
+  IconListLetters,
+  IconLogout,
+  IconTransform,
 } from "@tabler/icons-react";
 import { useState } from "react";
 import Comp_SimpleGridDrawer from "../../(user)/_comp/comp_simple_grid_drawer";
 import Comp_StackButtonDrawer from "../../(user)/_comp/comp_stack_button_drawer";
 import ComponentHeaderAdmin from "@/components/main/header_admin";
+import { PagePath } from "@/lib/page_path";
 
 export default function HeaderDashboard() {
   const [opened, setOpened] = useState(false);
@@ -19,18 +21,28 @@ export default function HeaderDashboard() {
   const listPathDrawer = [
     {
       title: "Tambah Barang",
-      path: "/admin/item/create",
+      path: PagePath.admin_item_create,
       icon: <IconCirclePlus />,
     },
     {
       title: "Persetujuan Peminjaman",
-      path: "/admin/approve-admin",
+      path: PagePath.admin_peminjaman_list({ status: "menunggu" }),
       icon: <IconListDetails />,
     },
     {
       title: "Data Barang",
-      path: "/admin/item",
+      path: PagePath.admin_item,
       icon: <IconList />,
+    },
+    {
+      title: "Daftar User",
+      path: PagePath.admin_item,
+      icon: <IconListLetters />,
+    },
+    {
+      title: "Tampilan User",
+      path: PagePath.beranda,
+      icon: <IconTransform />,
     },
   ];
 
@@ -38,11 +50,7 @@ export default function HeaderDashboard() {
     <>
       <ComponentHeaderAdmin
         title="Dashboard Admin"
-        buttonLeft={
-          <ActionIcon variant="transparent" onClick={() => {}}>
-            <IconBell color={MainColor.white} />
-          </ActionIcon>
-        }
+        disableButtonLeft
         buttonRight={
           <ActionIcon variant="transparent" onClick={() => setOpened(true)}>
             <IconDotsVertical color={MainColor.white} />
@@ -53,11 +61,19 @@ export default function HeaderDashboard() {
       <Comp_SimpleGridDrawer
         opened={opened}
         onClose={() => setOpened(false)}
-        cols={listPathDrawer.length}
+        cols={3}
       >
         {listPathDrawer.map((item, index) => (
           <Comp_StackButtonDrawer key={index} {...item} />
         ))}
+
+
+        <Comp_StackButtonDrawer
+          title="Keluar"
+          path={PagePath.login}
+          icon={<IconLogout />}
+          color="red"
+        />
       </Comp_SimpleGridDrawer>
     </>
   );

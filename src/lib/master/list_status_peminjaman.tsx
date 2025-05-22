@@ -1,14 +1,18 @@
 export const listStatusPeminjaman = [
     {
-        value: "tersedia",
-        label: "Tersedia"
+        value: "menunggu",
+        label: "Menunggu"
     },
     {
-        value: "tidak_tersedia",
-        label: "Tidak Tersedia"
+        value: "ditolak",
+        label: "Ditolak"
     },
     {
-        value: "perawatan",
-        label: "Perawatan"
-    }
+        value: "diterima",
+        label: "Diterima"
+    },
+    // {
+    //     value: "selesai",
+    //     label: "Selesai"
+    // }
 ]

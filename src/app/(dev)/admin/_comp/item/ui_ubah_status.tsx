@@ -1,5 +1,5 @@
 import ComponentContent from "@/components/main/content";
-import { listStatusPeminjaman } from "@/lib/master/list_status_peminjaman";
+import { listStatusBarang } from "@/lib/master/list_status_barang";
 import { Button, Radio, Stack } from "@mantine/core";
 import { useRouter } from "next/navigation";
 
@@ -20,7 +20,7 @@ export default function UIAdmin_ItemUbahStatus() {
             withAsterisk
           >
             <Stack mt="xs">
-              {listStatusPeminjaman.map((item, index) => (
+              {listStatusBarang.map((item, index) => (
                 <Radio key={index} value={item.value} label={item.label} />
               ))}
             </Stack>
