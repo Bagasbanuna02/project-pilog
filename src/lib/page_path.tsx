@@ -32,4 +32,10 @@ const PagePath = {
   // admin_peminjaman: "/admin/peminjaman",
   admin_peminjaman_list: ({ status }: { status: string }) => `/admin/peminjaman/list/${status}`,
   admin_peminjaman_id: ({ id }: { id: string }) => `/admin/peminjaman/${id}/`, 
+
+  // User
+  admin_user: "/admin/user",
+  admin_user_create: "/admin/user/create",
+  admin_user_detail: ({ id }: { id: string }) => `/admin/user/${id}`,
+  admin_user_edit: ({ id }: { id: string }) => `/admin/user/${id}/edit`,
 };

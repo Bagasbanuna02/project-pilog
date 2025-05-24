@@ -20,14 +20,14 @@ export default function HeaderDashboard() {
 
   const listPathDrawer = [
     {
-      title: "Tambah Barang",
-      path: PagePath.admin_item_create,
-      icon: <IconCirclePlus />,
-    },
-    {
       title: "Persetujuan Peminjaman",
       path: PagePath.admin_peminjaman_list({ status: "menunggu" }),
       icon: <IconListDetails />,
+    },
+    {
+      title: "Tambah Barang",
+      path: PagePath.admin_item_create,
+      icon: <IconCirclePlus />,
     },
     {
       title: "Data Barang",
@@ -36,7 +36,7 @@ export default function HeaderDashboard() {
     },
     {
       title: "Daftar User",
-      path: PagePath.admin_item,
+      path: PagePath.admin_user,
       icon: <IconListLetters />,
     },
     {
