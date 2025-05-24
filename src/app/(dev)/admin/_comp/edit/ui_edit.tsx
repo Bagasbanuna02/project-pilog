@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import ComponentContent from "@/components/main/content";
 import { PagePath } from "@/lib/page_path";
 import { Button, Select, Stack, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useRouter } from "next/navigation";
 
-export default function UIAdmin_ItemCreate() {
+
+export default function UIAdmin_ItemEdit() {
   const router = useRouter();
 
   const form = useForm({
@@ -71,7 +72,7 @@ export default function UIAdmin_ItemCreate() {
               {...form.getInputProps("description")}
             />
             <Button radius="xl" type="submit">
-              Simpan
+              Update
             </Button>
           </Stack>
         </form>

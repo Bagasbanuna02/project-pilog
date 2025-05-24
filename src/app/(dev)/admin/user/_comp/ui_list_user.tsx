@@ -1,10 +1,8 @@
-"use client";
-
-import { dummyItem } from "@/components/dummy/list_data_barang";
+import { listdummyUser } from "@/components/dummy/list_data_user";
 import ComponentContent from "@/components/main/content";
+import { PagePath } from "@/lib/page_path";
 import {
   ActionIcon,
-  Badge,
   Box,
   Button,
   Grid,
@@ -21,20 +19,19 @@ import {
   IconSquareRoundedPlus,
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { PagePath } from "@/lib/page_path";
 
-export default function UIAdmin_Item() {
+export default function UIAdmin_ListUser() {
   const router = useRouter();
 
-  const rows = dummyItem.map((item, index) => (
+  const rows = listdummyUser.map((item, index) => (
     <Table.Tr key={index}>
-      <Table.Td>
+      <Table.Td align="center">
         <Button
           radius={"xl"}
           variant="outline"
           leftSection={<IconEye />}
           onClick={() =>
-            router.push(PagePath.admin_item_detail({ id: item.id }), {
+            router.push(PagePath.admin_user_detail({ id: item.id }), {
               scroll: false,
             })
           }
@@ -43,22 +40,22 @@ export default function UIAdmin_Item() {
         </Button>
       </Table.Td>
       <Table.Td w={200}>
-        <Text lineClamp={1}>{item.name}</Text>
+        <Text lineClamp={1}>{item.name} dasdsad asd asdasdas</Text>
       </Table.Td>
       <Table.Td w={200}>
-        <Text lineClamp={1}>{item.category}</Text>
+        <Text lineClamp={1}>{item.departemen}</Text>
       </Table.Td>
-      <Table.Td w={200}>
-        {item.status == "tersedia" ? (
-          <Badge color="green">Tersedia</Badge>
-        ) : item.status == "tidak tersedia" ? (
-          <Badge color="red">Dipinjam</Badge>
-        ) : item.status == "perawatan" ? (
-          <Badge color="orange">Perawatan</Badge>
-        ) : (
-          ""
-        )}
-      </Table.Td>
+      {/* <Table.Td w={200}>
+           {item.status == "tersedia" ? (
+             <Badge color="green">Tersedia</Badge>
+           ) : item.status == "tidak tersedia" ? (
+             <Badge color="red">Dipinjam</Badge>
+           ) : item.status == "perawatan" ? (
+             <Badge color="orange">Perawatan</Badge>
+           ) : (
+             ""
+           )}
+         </Table.Td> */}
     </Table.Tr>
   ));
 
@@ -84,7 +81,7 @@ export default function UIAdmin_Item() {
                 variant="transparent"
                 size={40}
                 onClick={() =>
-                  router.push(PagePath.admin_item_create, { scroll: false })
+                  router.push(PagePath.admin_user_create, { scroll: false })
                 }
               >
                 <IconSquareRoundedPlus size={30} />
@@ -93,14 +90,13 @@ export default function UIAdmin_Item() {
           </Grid>
           <Paper withBorder p={"xs"} w={"100%"}>
             <ScrollArea w={"100%"} h={"100%"}>
-              <Box w={700}>
+              <Box w={"100%"}>
                 <Table verticalSpacing={"lg"}>
                   <Table.Thead>
                     <Table.Tr>
                       <Table.Th ta={"center"}>Aksi</Table.Th>
                       <Table.Th>Nama</Table.Th>
-                      <Table.Th>Kategori</Table.Th>
-                      <Table.Th>Status</Table.Th>
+                      <Table.Th>Departemen</Table.Th>
                     </Table.Tr>
                   </Table.Thead>
                   <Table.Tbody>{rows}</Table.Tbody>

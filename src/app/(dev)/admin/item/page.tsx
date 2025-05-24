@@ -1,12 +1,12 @@
 "use client";
 
-import ComponentHeader from "@/components/main/header";
+import HeaderAdmin_Item from "../_comp/item/header_item";
 import UIAdmin_Item from "../_comp/item/ui_item";
 
 export default function Page_AdminItemList() {
   return (
     <>
-      <ComponentHeader title="Data Barang" />
+      <HeaderAdmin_Item />
       <UIAdmin_Item />
     </>
   );

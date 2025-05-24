@@ -8,21 +8,31 @@ interface ICompStackButtonDrawer {
   path: string;
   icon: React.ReactNode;
   title: string;
+  color?: string;
+  // routerMethod?: "push" | "replace";
 }
 
 export default function Comp_StackButtonDrawer({
   path,
   icon,
   title,
-}: ICompStackButtonDrawer) {
+  color,
+}: // routerMethod = "push",
+ICompStackButtonDrawer) {
   const router = useRouter();
 
   return (
-    <Stack align="center" onClick={() => router.push(path, {scroll: false})}>
-      <ActionIcon variant="transparent" color={MainColor.black}>
+    <Stack
+      align="center"
+      onClick={() => router.push(path, { scroll: false })}
+      style={{
+        cursor: "pointer",
+      }}
+    >
+      <ActionIcon variant="transparent" color={color ?? MainColor.black}>
         {icon}
       </ActionIcon>
-      <Text ta={"center"} fz={"xs"}>
+      <Text ta={"center"} fz={"xs"} c={color ?? MainColor.black}>
         {title}
       </Text>
     </Stack>

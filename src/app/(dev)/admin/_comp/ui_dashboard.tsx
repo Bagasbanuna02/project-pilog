@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { MainColor } from "@/lib/color-palette";
@@ -112,7 +113,7 @@ export default function UIAdmin_Dashboard() {
             </Paper>
           </Stack>
 
-          <Stack>
+          {/* <Stack>
             <Paper withBorder p="sm">
               <Stack gap={"xs"}>
                 <Title order={4}>Paling sering dipinjam</Title>
@@ -126,7 +127,7 @@ export default function UIAdmin_Dashboard() {
                 </Box>
               </Stack>
             </Paper>
-          </Stack>
+          </Stack> */}
         </Stack>
       </ComponentContent>
     </>
