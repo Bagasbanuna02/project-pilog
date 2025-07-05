@@ -2,6 +2,7 @@
 
 import type React from "react";
 
+import { apiFetchVersion } from "@/lib/api-fetch-master";
 import { MainColor } from "@/lib/color-palette";
 import {
   Button,
@@ -10,13 +11,12 @@ import {
   Stack,
   Text,
   TextInput,
-  Title,
+  Title
 } from "@mantine/core";
+import { useShallowEffect } from "@mantine/hooks";
 import { IconLock, IconUser } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useShallowEffect } from "@mantine/hooks";
-import { apiFetchVersion } from "@/lib/api-fetch-master";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -43,9 +43,12 @@ export default function Login() {
   };
 
   return (
-    <Stack h="100%" justify="center" p={"lg"} style={{ color: "white" }}>
+    <Stack h="100%" justify="center" p={"lg"} style={{ color: "white", backgroundColor: MainColor.login }}>
+      <Text ta="center" fw={"bold"} c={MainColor.darkblue} mb={"xl"} fz={"h1"}  >
+        Pinjam Barang Logistik
+      </Text>
       <Paper radius="md" p="xl" withBorder bg={MainColor.soft_darkblue}>
-        <Title order={1} ta="center" mb={30}>
+        <Title order={2} ta="center" mb={30}>
           LOGIN
         </Title>
 
