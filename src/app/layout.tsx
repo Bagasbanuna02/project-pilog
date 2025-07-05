@@ -10,8 +10,8 @@ import MobileLayout from "@/components/main/mobile-layout";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Project Percobaan",
-  description: "Hanya untuk percobaan",
+  title: "Pinjam Barang Logistik",
+  description: "Platform digital untuk meminjam barang - barang logistik",
 };
 
 export default function RootLayout({
